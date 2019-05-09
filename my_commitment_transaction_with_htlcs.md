@@ -4,52 +4,47 @@
 +------------------------------------------------+
       |
       |
-      |
-      |
-      |
-      |
-      |
-      |       +---------------------------------------------------------------------------+
-      \------| your version of the commitment transaction that you are holding off-chain  |
-              +---------------------------------------------------------------------------+
+      |       +----------------------------------------------------------------------+
+      \------| my version of the commitment transaction that I am holding off-chain  |
+              +----------------------------------------------------------------------+
                   |  |  |  |
                   |  |  |  |
-                  *  *  |  |   output with my channel balance
-                  |  |  |  \------------------------------------- I can spend it immediately upon you broadcasting this tx
+                  *  *  |  |   output with your channel balance
+                  |  |  |  \------------------------------------- you can spend it immediately upon me broadcasting this tx
                   |  |  |
                   *  *  |
                   |  |  |
                   |  |  |
                   *  *  |
-                  |  |  |                                     ,-- you can spend it one day after you broadcast this tx
-                  |  |  |  output with your channel balance  /
+                  |  |  |                                     ,-- I can spend it one day after I broadcast this tx (expected outcome)
+                  |  |  |  output with my channel balance    /
                   *  *  \-----------------------------------<
                   |  |                                       \
-                  |  |                                        `-- I can spend it if you broadcast this tx and I have the revocation key (punishment!)
+                  |  |                                        `-- you can spend it if I broadcast this tx and I have given you the revocation key (punish breach outcome)
                   *  *
                   |  |
                   |  |
                   *  *
-                  |  |                                                                  ,-- you can spend it one day after you broadcast this tx
+                  |  |                                                                  ,-- you can spend it one day after I broadcast this tx (refund payment)
                   |  |                                                                 /
                   *  *                     ,-- if the absolute timelock expires... ---<
-                  |  | your payment to me /                  (refund to you)           \
-                  |  \-------------------<                                              `-- I can spend it if you broadcast this tx and I have the revocation key (punishment!)
+                  |  | my payment to you /                  (refund to me)             \
+                  |  \-------------------<                                              `-- you can spend it if I broadcast this tx and you have the revocation key (punish breach outcome)
                   *     (HTLC output)     \
-                  |                        `-- I can spend it if you broadcast this tx and I have the secret payment preimage
+                  |                        `-- you can spend it if I broadcast this tx and you have the secret payment preimage (expected outcome)
                   |                        \
-                  *                         `- I can spend it if you broadcast this tx and I have the revocation key (punishment!)
+                  *                         `-- you can spend it if I broadcast this tx and you have the revocation key (punish breach outcome)
                   |
                   |
                   *
                   |
-                  |                                                                         ,-- you can spend it one day after broadcasting this tx
+                  |                                                                         ,-- I can spend it one day after broadcasting this tx (expected outcome)
                   *                                                                        /
-                  |                        ,-- if you have the secret payment preimage ---<
-                  |  my payment to you    /                                                \
-                  \----------------------<                                                  `-- I can spend it if you broadcast this tx and I have the revocation key (punishment!)
+                  |                        ,-- if I have the secret payment preimage ---<
+                  |  your payment to me   /                                                \
+                  \----------------------<                                                  `-- you can spend it if I broadcast this tx and you have the revocation key (punish breach outcome)
                        (HTLC output)      \
-                                           `-- I can spend it if the absolute timelock expires (refund to me)
+                                           `-- you can spend it if the absolute timelock expires (refund to you)
                                            \
-                                            `- I can spend it if you broadcast this tx and I have the revocation key (punishment!)
+                                            `-- you can spend it if I broadcast this tx and you have the revocation key (punish breach outcome)
 ```
