@@ -11,7 +11,7 @@
        |  |  |  |
        *  *  |  |   Output with my balance
        |  |  |  \--------------------------> I can spend it immediately upon you broadcasting this tx
-       |  |  |
+       |  |  |           (P2WPKH)
        *  *  |
        |  |  |
        |  |  |
@@ -22,7 +22,7 @@
        |  |  |                             ,-> You can spend it one day after you broadcast this tx 
        |  |  |  Output with your balance  /             (CSV relative timelock, expected outcome)
        *  *  \---------------------------<
-       |  |                               \
+       |  |             (P2WSH)           \
        |  |                                `-> I can spend it if you broadcast this tx and I have the revocation key 
        *  *                                                      (punish breach outcome)
        |  |
@@ -36,7 +36,7 @@
        *  *                     ,-- If the absolute timelock expires ---<
        |  | Your payment to me /          (CLTV, refund to you)          \
        |  \-------------------<                                           `-> I can spend it if you broadcast this tx and I have the revocation key 
-       |       (HTLC output)  |                                                              (punish breach outcome)
+       |  (P2WSH, HTLC output)|                                                              (punish breach outcome)
        *                       \
        |                        `-- I can spend it if you broadcast this tx and I have the secret payment preimage 
        |                        |                 (expected outcome)
@@ -51,7 +51,7 @@
        |                        ,-- If you have the secret payment preimage -<
        |  My payment to you    /                                              \
        \----------------------<                                                `-> I can spend it if you broadcast this tx and I have the revocation key 
-             (HTLC output)    |                                                                  (punish breach outcome)
+        (P2WSH, HTLC output)  |                                                                  (punish breach outcome)
                                \
                                 `--> I can spend it if the CLTV absolute timelock expires 
                                  |                        (refund outcome)
