@@ -16,6 +16,9 @@
        |  |  |
        |  |  |
        *  *  |
+       |  |  |
+       |  |  |
+       *  *  |
        |  |  |                             ,-> You can spend it one day after you broadcast this tx 
        |  |  |  Output with your balance  /             (CSV relative timelock, expected outcome)
        *  *  \---------------------------<
