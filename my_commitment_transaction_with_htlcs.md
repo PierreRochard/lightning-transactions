@@ -17,7 +17,7 @@
        |  |  |
        *  *  |
        |  |  |                             ,-> I can spend it one day after I broadcast this tx 
-       |  |  |  Output with my balance    /                       (expected outcome)
+       |  |  |  Output with my balance    /         (CSV relative timelock, expected outcome)
        *  *  \---------------------------<
        |  |                               \
        |  |                                `-> You can spend it if I broadcast this tx and you have the revocation key 
@@ -25,10 +25,13 @@
        |  |
        |  |
        *  *
+       |  |
+       |  |
+       *  *
        |  |                                                               ,-> I can spend it one day after I broadcast this tx 
-       |  |                                                              /                   (refund outcome)
+       |  |                                                              /          (CSV relative timelock, refund outcome)
        *  *                     ,-- If the absolute timelock expires ---<
-       |  | My payment to you  /                                         \
+       |  | My payment to you  /         (CLTV, refund to me)            \
        |  \-------------------<                                           `-> You can spend it if I broadcast this tx and you have the revocation key 
        |       (HTLC output)  |                                                              (punish breach outcome)
        *                       \
@@ -41,14 +44,14 @@
        *
        |
        |                                                                     ,-> I can spend it one day after broadcasting this tx 
-       *                                                                    /                      (expected outcome)
+       *                                                                    /        (CSV relative timelock, expected outcome)
        |                        ,-- If I have the secret payment preimage -<
        |  Your payment to me   /                                            \
        \----------------------<                                              `-> You can spend it if I broadcast this tx and you have the revocation key 
              (HTLC output)    |                                                                    (punish breach outcome)
                                \
-                                `--> You can spend it if the absolute timelock expires (refund outcome)
-                                 |
+                                `--> You can spend it if the absolute timelock expires
+                                 |                        (refund outcome)
                                  \
                                   `--> You can spend it if I broadcast this tx and you have the revocation key 
                                                           (punish breach outcome)
