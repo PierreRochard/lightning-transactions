@@ -1,4 +1,5 @@
 ```
+
 +------------------------------------------------+
 | 2-of-2 multi-sig funding tx confirmed on-chain |
 +------------------------------------------------+
@@ -51,6 +52,8 @@
                                                           (punish breach outcome)
                                                           
                                    
+
+
                                                           
       +------------------------------------------------------------------------------------------------------+
       | My version of the HTLC timeout transaction that I am holding off-chain in case I need to force close |
