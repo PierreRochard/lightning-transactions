@@ -16,9 +16,6 @@
        |  |  |
        |  |  |
        *  *  |
-       |  |  |
-       |  |  |
-       *  *  |
        |  |  |                             ,-> I can spend it one day after I broadcast this tx 
        |  |  |  Output with my balance    /         (CSV relative timelock, expected outcome)
        *  *  \---------------------------<
@@ -28,12 +25,9 @@
        |  |
        |  |
        *  *
-       |  |
-       |  |
-       *  *
        |  |                                                             
        |  |                                                           
-       *  *                     ,-- If the absolute timelock expires -> 2-of-2 multisig output for HTLC timeout transaction 
+       *  *                     ,-- If the absolute timelock expires -> 2-of-2 multisig output for HTLC timeout tx 
        |  | My payment to you  /         (CLTV, refund to me)                       (see below)
        |  \-------------------<                                         
        |  (P2WSH, HTLC output)|                                                   
@@ -44,11 +38,8 @@
        *                         `- You can spend it if I broadcast this tx and you have the revocation key 
        |                                          (punish breach outcome)
        |
-       *
-       |
-       |                                                  
-       *                                                         
-       |                        ,-- If I have the secret payment preimage -> 2-of-2 multisig output for HTLC success transaction 
+       *                                                      
+       |                        ,-- If I have the secret payment preimage -> 2-of-2 multisig output for HTLC success tx 
        |  Your payment to me   /                                                        (see below)
        \----------------------<                                          
         (P2WSH, HTLC output)  |                                                             
@@ -59,6 +50,7 @@
                                   `--> You can spend it if I broadcast this tx and you have the revocation key 
                                                           (punish breach outcome)
                                                           
+                                   
                                                           
       +------------------------------------------------------------------------------------------------------+
       | My version of the HTLC timeout transaction that I am holding off-chain in case I need to force close |
